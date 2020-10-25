@@ -11,6 +11,17 @@ jobs:
         id: checkout
         uses: actions/checkout@v2
         
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew distZip
+        
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v1
