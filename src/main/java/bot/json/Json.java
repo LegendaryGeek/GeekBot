@@ -17,7 +17,7 @@ import com.google.gson.JsonParser;
 public class Json {
 	static Logger log = LogManager.getLogger(Json.class);
 	Gson gson = new Gson();
-	public File BotSettingsPath = new File("C:\\GeekBot\\ServerSettings");
+	public File BotSettingsPath = new File("/GeekBot/ServerSettings");
 
 //	public void ServerSettings(Guild guild) {
 //		BotSettingsPath.mkdirs();

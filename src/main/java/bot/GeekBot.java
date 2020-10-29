@@ -33,6 +33,7 @@ import com.google.gson.JsonElement;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -93,12 +94,11 @@ public class GeekBot {
 	// public List<ServerSettings> settingsList = new ArrayList<>();
 	private static JsonElement serverSettings;
 	private static Logger log = LogManager.getLogger(GeekBot.class);
-	public static final File BotPath = new File("C:\\GeekBot\\ServerSettings");
+	public static final File BotPath = new File("/GeekBot/ServerSettings");
 	private static Timer timer = new Timer();
 	private static Configuration config = new Configuration();
 	private static StreamSpeechRecognizer recog;
 	public static TimerTask task = new EventStarboudServerReset();
-	public static final String STEAM_INSTALLATION_PATH = "C:\\Program Files (x86)\\Steam\\Steam.exe";
 	public static SourceServer starboundServer;
 
 	private static Set<GatewayIntent> intents = new HashSet<>();
@@ -120,7 +120,7 @@ public class GeekBot {
 
 		recog = new StreamSpeechRecognizer(config);
 
-		try (InputStream input = GeekBot.class.getClassLoader().getResourceAsStream("Config.properties")) {
+		try (InputStream input = FileUtils.openInputStream(new File("/GeekBot/Config.properties"))) {
 
 			Properties prop = new Properties();
 			if (input == null) {
@@ -193,7 +193,7 @@ public class GeekBot {
 		// commands not used by the public
 		commandBuilder.addCommand(new CmdStopBot());
 		commandBuilder.addCommand(new CmdStarboundRole());
-		commandBuilder.addCommand(new CmdStarBoundRestart());
+		//commandBuilder.addCommand(new CmdStarBoundRestart());
 		commandBuilder.addCommand(new CmdChironHistory());
 		commandBuilder.addCommand(new CmdChironJob());
 		commandBuilder.addCommand(new CmdJoinVoice());
@@ -203,7 +203,7 @@ public class GeekBot {
 
 		commandBuilder.setHelpWord("help");
 
-		timer.schedule(task, get24());
+		//timer.schedule(task, get24());
 		final CommandClient commandListener = commandBuilder.build();
 		builder.addEventListeners(commandListener);
 		builder.enableIntents(intents);
@@ -218,21 +218,11 @@ public class GeekBot {
 
 		
 		DisClient.getGuilds().forEach(action -> {
-			try {
-				final Connection conn = DriverManager.getConnection(getDATABASE_URL(), getDATABASE_USER(), getDATABASE_PASS());
-
-				conn.createStatement().execute("CREATE TABLE geek_bot;", Statement.RETURN_GENERATED_KEYS);
-				conn.createStatement().execute("SELECT * FROM geek_bot;", Statement.RETURN_GENERATED_KEYS);
-
-			} catch (SQLException e) {
-				log.catching(e);
-			}
-
-		});
 
 		log.info(result);
 		log.info("End Of Program");
-	}
+	});
+}
 
 	/**
 	 * @return the MINDUSTRY_URL

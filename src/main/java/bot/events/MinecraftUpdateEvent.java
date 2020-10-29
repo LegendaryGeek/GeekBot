@@ -31,9 +31,9 @@ public class MinecraftUpdateEvent extends TimerTask {
 
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	File BotPath = new File("C:\\GeekBot");
+	File BotPath = new File("/GeekBot");
 
-	File minecraftVerionJson = new File("C:\\GeekBot\\MinecraftVersionManifest.json");
+	File minecraftVerionJson = new File("/GeekBot/MinecraftVersionManifest.json");
 
 	@Override
 	public void run() {

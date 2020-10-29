@@ -36,7 +36,7 @@ public class Minecraft {
 	public static String MinecraftVersion() {
 		Gson gson = new Gson();
 		String message = null;
-		File backupJsonVersion = new File("C:\\GeekBot\\MinecraftVersionManifest.json");
+		File backupJsonVersion = new File("/GeekBot/MinecraftVersionManifest.json");
 
 		try (BufferedReader data = Files.newBufferedReader(backupJsonVersion.toPath())) {
 
@@ -69,7 +69,7 @@ public class Minecraft {
 		String latestMCVersion = "1.12.2";
 		StringBuilder message = new StringBuilder("");
 		String message2;
-		File backupJsonStatus = new File("C:\\\\GeekBot\\\\MCPVersionManifest.json");
+		File backupJsonStatus = new File("/GeekBot/MCPVersionManifest.json");
 
 		try (BufferedReader data = Files.newBufferedReader(backupJsonStatus.toPath())) {
 

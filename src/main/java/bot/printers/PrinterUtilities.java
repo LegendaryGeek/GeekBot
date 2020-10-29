@@ -17,6 +17,8 @@ public class PrinterUtilities {
 	static Gson gson = new Gson();
     private static Logger log = LogManager.getLogger();
 
+	private PrinterUtilities(){}
+
     public static EmbedBuilder PrinterJob(CommandEvent event, Printer printer) {
         JsonObject json = null;
         PrintJobInfo info = null;
@@ -60,8 +62,8 @@ public class PrinterUtilities {
 
 		builder.addField("Printer State", info.getState(), true);
         return builder;
-    }
-    
+	}
+	
     public static double fillamentPricePerLength (double diameter, double mass, double pricePerMass, double density) {
         // Parameters:
         // diameter: Fillament diameter, in millimeters (mm).
@@ -86,4 +88,5 @@ public class PrinterUtilities {
 
         return pricePerLength;
     }
+
 }

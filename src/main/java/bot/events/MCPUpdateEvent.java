@@ -27,10 +27,9 @@ public class MCPUpdateEvent extends TimerTask {
 
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	File BotPath = new File("C:\\GeekBot");
-
-	File mcpVerionJson = new File("C:\\GeekBot\\MCPVersionManifest.json");
-	File localMCPVersionJson = new File("C:\\Users\\Daley-Hawkins\\Downloads\\versions.json");
+	File BotPath = new File("/GeekBot");
+	
+	File mcpVerionJson = new File("/GeekBot/MCPVersionManifest.json");
 
 	@Override
 	public void run() {
