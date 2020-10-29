@@ -31,7 +31,7 @@ idea.module {
 
 
 compileJava {
-    options.release = 8
+    //options.release = 8
 }
 
 
@@ -47,14 +47,9 @@ repositories {
 }
 
 dependencies {
-	//implementation 'com.discord4j:discord4j-core:3.0'
-	  compile group: 'com.github.koraktor', name:'steam-condenser', version:'1.3.9'
-	  compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
+	compile group: 'com.github.koraktor', name:'steam-condenser', version:'1.3.9'
+	compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
     compile group: 'edu.cmu.sphinx', name: 'sphinx4-data', version:'5prealpha-SNAPSHOT'
-    
-     //        <groupId>com.microsoft.cognitiveservices.speech</groupId>
-   //      <artifactId>client-sdk</artifactId>
- //        <version>1.13.0</version>
     compile group: 'com.microsoft.cognitiveservices.speech', name: 'client-sdk', version: '1.13.0'
 	compile 'com.jagrosh:jda-utilities:3.0.4'
     compile 'net.dv8tion:JDA:4.2.0_168'
@@ -64,11 +59,14 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.8.6'
 	compile 'com.google.http-client:google-http-client-gson:1.33.0'
 	compile 'org.apache.commons:commons-io:1.3.2'
- compile 'com.google.guava:guava:28.2-jre'
-    testImplementation 'junit:junit:4.12'
+	compile 'com.google.guava:guava:28.2-jre'
     compile 'ch.qos.logback:logback-classic:1.2.3'
 	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
 	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+	
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
+	
+    testImplementation 'junit:junit:4.12'
 }
 
 jar {
