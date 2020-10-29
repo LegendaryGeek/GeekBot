@@ -52,5 +52,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: legendarygeek/geekbot
+          tags: legendarygeek/geekbot:latest
+          file: ./Dockerfile
   
+      - name: Image digest
+        run: echo ${{ steps.dockerhub_push.outputs.digest }}
