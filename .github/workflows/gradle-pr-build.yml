@@ -1,11 +1,13 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java#publishing-using-gradle
 
-name: Gradle Package
+name: Checl if a PR can be built
 
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches: 
+      - release
+      - dev
 
 jobs:
   build:
@@ -14,6 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -22,12 +25,4 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
-      run: gradle build
-
-    # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-    # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      run: gradle publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GH_TOKEN }}
+      run: ./gradlew clean build
