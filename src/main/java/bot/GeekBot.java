@@ -95,6 +95,7 @@ public class GeekBot {
 	private static JsonElement serverSettings;
 	private static Logger log = LogManager.getLogger(GeekBot.class);
 	public static final File BotPath = new File("/GeekBot/ServerSettings");
+	public static final File ConfigPath = new File("/GeekBot/Config/Config.properties");
 	private static Timer timer = new Timer();
 	private static Configuration config = new Configuration();
 	private static StreamSpeechRecognizer recog;
@@ -120,7 +121,12 @@ public class GeekBot {
 
 		recog = new StreamSpeechRecognizer(config);
 
-		try (InputStream input = FileUtils.openInputStream(new File("/GeekBot/Config.properties"))) {
+		if (!BotPath.exists()) {
+			BotPath.mkdirs();
+			ConfigPath.mkdirs();
+		}
+
+		try (InputStream input = FileUtils.openInputStream(ConfigPath)) {
 
 			Properties prop = new Properties();
 			if (input == null) {
@@ -148,9 +154,7 @@ public class GeekBot {
 			setENDER_URL(prop.getProperty("url.ender"));
 		}
 
-		if (!BotPath.exists()) {
-			BotPath.mkdirs();
-		}
+
 
 		factory = new GsonFactory();
 		builder = new JDABuilder(AccountType.BOT).setToken(DISCORD_TOKEN);
