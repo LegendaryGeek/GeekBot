@@ -10,4 +10,4 @@ COPY --from=build /home/gradle/src/build/distributions/GeekBot.tar /app/
 WORKDIR /app
 RUN tar -xvf GeekBot.tar
 
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/GeekBot/lib/GeekBot.jar"]
+ENTRYPOINT ["java","-jar","/app/GeekBot/lib/GeekBot.jar"]
