@@ -5,8 +5,9 @@ RUN gradle clean build --no-daemon
 
 FROM openjdk:8-jre-slim
 
-RUN mkdir /app
+COPY --from=build /home/gradle/src/build/distributions/GeekBot.tar /app/
 
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/GeekBot.jar
+WORKDIR /app
+RUN tar -xvf GeekBot.tar
 
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/GeekBot.jar"]
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/GeekBot/lib/GeekBot.jar"]
